@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+    <title>电子科技大学学科平台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="dashboard.css" rel="stylesheet"> -->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gZFC6cwGRbfwkVcoOma2XMXTbNBzRLuh"></script>
+	<style>
+		#mapForSearch{width:100%;height:200px;}
+		.anchorBL{display:none}
+	</style>
+  </head>
+  
+  <body>
+	<!-- 头部导航栏 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">电子科技大学学科平台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li><a href="#">Dashboard</a></li> -->
+            <!-- <li><a href="#">Settings</a></li> -->
+            <li><a href="#" data-toggle="modal" data-target=".addSensor">施工</a></li>
+            <li><a href="#">帮助</a></li>
+          </ul>
+          <!-- <form class="navbar-form navbar-right"> -->
+            <!-- <input type="text" class="form-control" placeholder="Search..."> -->
+          <!-- </form> -->
+        </div>
+      </div>
+    </nav>
+	
+	<div class="container-fluid">
+      <div class="row" style="margin-top:10">
+		<!-- 左边列表 -->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">地图数据 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">现场数据</a></li>
+            <li><a href="#">...</a></li>
+          </ul>
+		</div>
+		
+		<!-- 右边部分 -->
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			
+			<!-- 右边上部分 -->
+			<h1 class="page-header">地图</h1>
+			<div>
+				<iframe id="iframe" src="html/mainlist-b3.html" width="100%", height="500px"></iframe>
+			</div>
+			<!-- 右边下部分 -->
+			<h2 class="sub-header">实时状态</h2>
+			
+			<div>
+				<p> SomeText for part 1 </p>
+				<p>{{text1}}</p>
+				
+			</div>
+		</div>
+		
+	  </div>
+	  
+	</div>
+	
+	
+	<!-- pop windows -->
+	<div class="modal fade addSensor" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">施工</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						添加施工点
+						<ul class="list-group" style="margin-top:20px;">
+							<li class="list-group-item">
+								<div class="input-group input-group-sm input-group-md">
+									<span class="input-group-addon">型号</span>
+									<input type="text" class="form-control">
+									<!-- <span class="input-group-addon">cm</span> -->
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="input-group input-group-sm input-group-md">
+									<span class="input-group-addon">量程</span>
+									<input type="text" class="form-control">
+									<!-- <span class="input-group-addon">cm</span> -->
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="input-group input-group-sm input-group-md">
+									<span class="input-group-addon">位置</span>
+									<input type="text" class="form-control" id="finallyPosition">
+									<span class="input-group-addon" data-toggle="modal" data-target=".addPosition">点击添加</span>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="input-group input-group-sm input-group-md">
+									<span class="input-group-addon">图片</span>
+									<input type="text" class="form-control">
+									<span class="input-group-addon">点击添加</span>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="input-group input-group-sm input-group-md">
+									<span class="input-group-addon">管理人员</span>
+									<input type="text" class="form-control">
+									<!-- <span class="input-group-addon">cm</span> -->
+								</div>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default btn-md" type="button" data-dismiss="modal">关闭</button>
+					<button class="btn btn-primary btn-md" type="button">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- pop windows for position -->
+	<div class="modal fade addPosition" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">选择位置</h4>
+				</div>
+				<div class="modal-body">
+					<div class="input-group input-group-sm input-group-md">
+						<input type="text" class="form-control" id="inputPosition"/>
+						<span class="input-group-addon" onClick="searchPosition(document.getElementById('inputPosition').value)">搜索</span>
+					</div>
+					<p id="showSelected">选择的位置：{{position}}</p>
+					<div id="mapForSearch">
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default btn-md" type="button" data-dismiss="modal">关闭</button>
+					<button class="btn btn-primary btn-md" type="button" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+  </body>
+  <script src="js/repeatGetInfo.js"></script>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 禁止用户缩放 -->
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv="Content-Type" content="text/html; Charset=utf-8"/>
+	<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
+
+	<title>Test Map</title>
+
+	<style type="text/css">
+		html{height: 100%}
+		body{height: 100%; margin: 0px; padding: 0px}
+		#container{height:100%}
+		
+		.anchorBL{display:none}
+	</style>
+	
+	<!-- <script type="text/javascript" src="js/test.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gZFC6cwGRbfwkVcoOma2XMXTbNBzRLuh"></script>
+</head>
+<body>
+
+	<div id="container"></div>
+	
+	<script type="text/javascript">
+		<!-- 新建地图，禁止双击事件 -->
+		var map = new BMap.Map("container",{enableMapClick: false});
+		var point = new BMap.Point(103.937404, 30.756035); // 电子科技大学的定位
+		map.centerAndZoom(point, 16); // 显示坐标，缩放级别为 16，并初始化显示
+		<!-- map.addControl(new BMap.NavigationControl()); //显示导航栏 -->
+		<!-- 使用自定义样式 -->
+	
+		map.setMapStyle({style: 'normal'});
+		
+		<!-- 添加一个标注 -->
+		<!-- var map = new BMap.Map("container"); -->
+		var point = new BMap.Point(103.936677, 30.760921);
+		<!-- map.centerAndZoom(point, 16); -->
+		var marker = new BMap.Marker(point);
+		<!-- marker.enableDragging(); // 允许地图被拖动，默认不允许 -->
+		map.addOverlay(marker);
+		
+		<!-- 添加信息窗口 -->
+		<!-- var opts = { 		// 窗口基本信息 -->
+			<!-- width : 250, -->
+			<!-- height: 100, -->
+			<!-- title : "test" -->
+		<!-- } -->
+		<!-- 显示窗口基本信息 -->
+		var title = "test title";
+		var imgName = "zhulou";
+		var imgPath = "zhulou.jpg";
+		var showContent = "<p>This is the content to be show, for more infomation. this to</p>";
+		
+		var sContent = '<div style="margin:0;line-height:20px;padding:2px;">' +
+					   '<img src=' + imgPath + ' alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                       showContent +
+                       '</div>';
+					   
+		var opts = {
+			title : title,
+			width : 290,
+			height: 105,
+			enableAutoPan : true,
+		}
+				  
+		var infoWindow = new BMap.InfoWindow(sContent, opts); // 窗口实例
+		<!-- map.openInfoWindow(infoWindow, map.getCenter()); -->
+		
+		map.addControl(new BMap.NavigationControl());
+		
+		var showWindow;
+		<!-- 显示的点 -->
+		var points = [{x:103.936677, y:30.760921}, {x:103.933309,y:30.752199}, {x:103.931261,y:30.756497}, {x:103.939328,y:30.751299}];
+		for(i=0; i < points.length; i++){
+			point = new BMap.Point(points[i].x, points[i].y);
+			marker = new BMap.Marker(point);
+			marker.addEventListener("click", function (e) {
+														  <!-- map.openInfoWindow(infoWindow, e.point); -->
+														  showWindow(e);
+														  });
+			map.addOverlay(marker);
+		}
+		
+	</script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+</body>
+</html>
