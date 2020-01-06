@@ -111,20 +111,27 @@
 					<h4 class="modal-title">施工</h4>
 				</div>
 				<div class="modal-body">
-					<form>
+					<form id="addedSensorForm">
 						添加施工点
 						<ul class="list-group" style="margin-top:20px;">
 							<li class="list-group-item">
 								<div class="input-group input-group-sm input-group-md">
+									<span class="input-group-addon">名字</span>
+									<input type="text" class="form-control" id="sensorName"/>
+									<!-- <span class="input-group-addon">cm</span> -->
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="input-group input-group-sm input-group-md">
 									<span class="input-group-addon">型号</span>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" id="sensorType"/>
 									<!-- <span class="input-group-addon">cm</span> -->
 								</div>
 							</li>
 							<li class="list-group-item">
 								<div class="input-group input-group-sm input-group-md">
 									<span class="input-group-addon">量程</span>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" id="sensorRange">
 									<!-- <span class="input-group-addon">cm</span> -->
 								</div>
 							</li>
@@ -138,14 +145,14 @@
 							<li class="list-group-item">
 								<div class="input-group input-group-sm input-group-md">
 									<span class="input-group-addon">图片</span>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control"  id="sensorImage">
 									<span class="input-group-addon">点击添加</span>
 								</div>
 							</li>
 							<li class="list-group-item">
 								<div class="input-group input-group-sm input-group-md">
 									<span class="input-group-addon">管理人员</span>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control"  id="sensorManager">
 									<!-- <span class="input-group-addon">cm</span> -->
 								</div>
 							</li>
@@ -153,8 +160,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default btn-md" type="button" data-dismiss="modal">关闭</button>
-					<button class="btn btn-primary btn-md" type="button">确定</button>
+					<button class="btn btn-default btn-md" type="button" data-dismiss="modal" id="closeButton">关闭</button>
+					<button class="btn btn-primary btn-md" type="button" onclick="postData()">确定</button>
 				</div>
 			</div>
 		</div>

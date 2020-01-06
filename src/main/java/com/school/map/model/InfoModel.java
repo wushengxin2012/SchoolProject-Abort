@@ -5,9 +5,11 @@ public class InfoModel{
         private String pointName;
         private String pointStatus;
         private String imgPath = "Test parameter 1";
+		
         private String parameter2 = "Test parameter 2";
         private String parameter3 = "Test parameter 3";
         private String parameter4 = "Test parameter 4";
+		
         private double x;
         private double y;
 
