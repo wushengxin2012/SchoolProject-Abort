@@ -43,6 +43,7 @@ function postData(){
 			alert("添加成功");
 			$("#addedSensorForm")[0].reset();
 			$("#closeButton").click();
+			window.location.reload();
 		},
 		error: function(e){
 			alert("添加失败：" + e);

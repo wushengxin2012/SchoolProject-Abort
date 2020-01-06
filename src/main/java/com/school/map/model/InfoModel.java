@@ -1,7 +1,7 @@
 package com.school.map.model;
 
 public class InfoModel{
-        private String infoId;
+        private int infoId;
         private String pointName;
         private String pointStatus;
         private String imgPath = "Test parameter 1";
@@ -17,7 +17,7 @@ public class InfoModel{
 
         }
 
-        public InfoModel(String value1, String value2, String value3, double value4, double value5){
+        public InfoModel(int value1, String value2, String value3, double value4, double value5){
                 infoId = value1;
                 pointName = value2;
                 pointStatus = value3;
@@ -26,11 +26,11 @@ public class InfoModel{
         }
 
         // getter and setter
-        public String getInfoId(){
+        public int getInfoId(){
                         return infoId;
         }
 
-        public void setInfoId(String value){
+        public void setInfoId(int value){
                         this.infoId = value;
         }
         public String getPointName(){

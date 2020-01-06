@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.school.map.model.InfoModel;
+import com.school.map.model.SensorModel;
 
 @RestController
 public class InformationService{
@@ -19,15 +20,15 @@ public class InformationService{
 		
 		public InformationService(){
 			
-			InfoModel point1 = new InfoModel("point1", "qingzhen", "status-ok", 103.935977,30.760807);
+			InfoModel point1 = new InfoModel(1, "qingzhen", "status-ok", 103.935977,30.760807);
             point1.setImgPath("qingzhen.png");
-            InfoModel point2 = new InfoModel("point2", "tushuguan", "status-ok", 103.935258,30.756513);
+            InfoModel point2 = new InfoModel(2, "tushuguan", "status-ok", 103.935258,30.756513);
             point2.setImgPath("tushuguan.jpg");
-            InfoModel point3 = new InfoModel("point3", "jiayuan", "status-ok", 103.940361,30.759085);
+            InfoModel point3 = new InfoModel(3, "jiayuan", "status-ok", 103.940361,30.759085);
             point3.setImgPath("jiayuan.jpg");
-            InfoModel point4 = new InfoModel("point4", "kafei", "status-ok", 103.931324,30.756509);
+            InfoModel point4 = new InfoModel(4, "kafei", "status-ok", 103.931324,30.756509);
             point4.setImgPath("kafei.jpg");
-            InfoModel point5 = new InfoModel("point5", "huodong", "status-error", 103.935456,30.761459);
+            InfoModel point5 = new InfoModel(5, "huodong", "status-error", 103.935456,30.761459);
             point5.setImgPath("huodong.jpg");
 			
             list = new ArrayList<InfoModel>();
@@ -37,12 +38,12 @@ public class InformationService{
 
         @RequestMapping(value="/informationservice/{infoId}", method = RequestMethod.GET)
         @CrossOrigin(origins = "*", allowCredentials = "true")
-        public InfoModel getInformation(@PathVariable("infoId") String infoId){
+        public InfoModel getInformation(@PathVariable("infoId") int infoId){
 			
 			InfoModel requestValue = null;
 			
 			for(InfoModel info : list){
-				if(info.getInfoId().equals(infoId)){
+				if(info.getInfoId() == infoId){
 					requestValue = info;
 				}
 			}	
@@ -61,5 +62,28 @@ public class InformationService{
                 
             return list;
         }
+		
+		// other tools
+		// other tools
+		// other tools
+		// other tools
+		private InfoModel transferModel(SensorModel model){
+			InfoModel returnModel = new InfoModel();
+			returnModel.setInfoId(6);
+			returnModel.setPointName(model.getSensorName());
+			String position_x = model.getSensorPosition().split(",")[0];
+			String position_y = model.getSensorPosition().split(",")[1];
+			returnModel.setX(Double.parseDouble(position_x));
+			returnModel.setY(Double.parseDouble(position_y));
+			returnModel.setImgPath(model.getSensorImage());
+			returnModel.setPointStatus(model.getSensorStatus());
+			
+			return returnModel;
+		}
+		
+		public void saveSensor(SensorModel sensorModel){
+			InfoModel newInfoModel = transferModel(sensorModel);
+			list.add(newInfoModel);
+		}
 
 }

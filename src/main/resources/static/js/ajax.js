@@ -16,8 +16,8 @@ var dataFormService = new Vue({
 	}
 });
 
-var title = "test title";
-var imgName = "zhulou";
+var title = "zhulou";
+// var imgName = 1;
 var imgPath = "zhulou.jpg";
 var showContent = "<p>This is the content to be show, for more infomation. this to</p>";
 
@@ -34,9 +34,11 @@ var showWindow = function (e){
 		height: 105,
 		enableAutoPan : true,
 	}
-			  
+	
 	var infoWindow = new BMap.InfoWindow(sContent, opts); // 窗口实例
+
 	map.openInfoWindow(infoWindow, e.point)
+
 }
 
 var reserverMPs = [];
@@ -52,12 +54,12 @@ var doAjax = function (e){
 	
 	$.get("http://localhost:8000/informationservice/" + point.infoId, function(data, status){
 		
-		title = data.infoId;
-		imgName = data.infoId;
+		title = data.pointName;
+		// imgName = data.infoId;
 		imgPath = "../" + point.imgPath;
 
 		showWindow(e);
-		
+	
 	});
 	
 }
