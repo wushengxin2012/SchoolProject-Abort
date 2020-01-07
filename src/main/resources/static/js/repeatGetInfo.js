@@ -53,7 +53,7 @@ function postData(){
 		sensorManager: sensorManager
 	};
 
-	
+	var firstPostStatus = false;
 	$.ajax({
 		type: "POST",
 		url: window.location.protocol + "/addSensor",
@@ -61,6 +61,7 @@ function postData(){
 		// contentType: false,
 		// processData: false,
 		success: function(data){
+			firstPostStatus = true;
 			// alert("添加成功");
 			// $("#addedSensorForm")[0].reset();
 			// $("#closeButton").click();
@@ -86,11 +87,22 @@ function postData(){
 		contentType: false,
 		processData: false,
 		success: function(data){
-			alert("添加成功");
+			
+			if(firstPostStatus == true){
+				alert("添加成功");
+				$("#addedSensorForm")[0].reset();
+				$("#closeButton").click();
+				window.location.reload();
+				firstPostStatus = false;
+				
+			}else{
+				alert("数据上传失败");
+				
+			}
 			
 		},
 		error: function(data){
-			alert("添加失败");
+			alert("图片上传失败");
 			
 		}
 		
