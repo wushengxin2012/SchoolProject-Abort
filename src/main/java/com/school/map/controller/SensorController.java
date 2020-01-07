@@ -29,7 +29,7 @@ public class SensorController{
 	
 	@RequestMapping(value="/addSensor" , method=RequestMethod.POST)
 	public String addSensor(SensorModel addedSensor){
-		//infoService.saveSensor(addedSensor);
+		infoService.saveSensor(addedSensor);
 		System.out.println(addedSensor.getSensorName());
 		// System.out.println(addedSensor.get("sensorName"));
 		return "success";
@@ -39,19 +39,22 @@ public class SensorController{
 	public String addImage(@RequestParam("file") MultipartFile file){
 		if(!file.isEmpty()){
 			try{
-				// BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(file.getOriginalFilename())));
+				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File("target/classes/static/imgs/" + file.getOriginalFilename())));
 				System.out.println(file.getOriginalFilename());
-				// out.write(file.getBytes());
-				// out.flush();
-				// out.close();
+				out.write(file.getBytes());
+				out.flush();
+				out.close();
+				
 			}catch(Exception e){
 				e.printStackTrace();
 				return "error";
+				
 			}
 			return "success";
 			
 		}else{
 			return "error";
+			
 		}
 	}
 }

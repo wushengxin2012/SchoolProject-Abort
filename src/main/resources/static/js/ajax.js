@@ -56,7 +56,7 @@ var doAjax = function (e){
 		
 		title = data.pointName;
 		// imgName = data.infoId;
-		imgPath = "../" + point.imgPath;
+		imgPath = "../" + "imgs/" + point.imgPath;
 
 		showWindow(e);
 	
