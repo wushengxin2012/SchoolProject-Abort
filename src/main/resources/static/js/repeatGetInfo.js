@@ -21,25 +21,37 @@ function searchPosition(position){
 };
 
 function postData(){
+	
+	if($("#finallyPosition").val() == '' ){
+		alert("位置不能为空");
+		return;
+	}
+	
+	if($("#sensorName").val() == '' ){
+		alert("名字不能为空");
+		return;
+	}
+		
+	if($("#sensorImage").val() == ''){
+		alert("图片不能为空");
+		return;
+	}
+	
 	var sensorName = $("#sensorName").val();
 	var sensorType = $("#sensorType").val();
 	var sensorRange = $("#sensorRange").val();
 	var sensorPosition = $("#finallyPosition").val();
-	var sensorImage = $("#sensorImage").val();
+	// var sensorImage = $("#sensorImage").val();
+	var sensorImage = new Date().getTime() + "." + ($("#sensorImage")[0].files[0].type).split('/')[1];
 	var sensorManager = $("#sensorManager").val();
 	var addedSensor = {
 		sensorName: sensorName,
 		sensorType: sensorType,
 		sensorRange: sensorRange,
 		sensorPosition: sensorPosition,
-		//sensorImage: sensorImage,
+		sensorImage: sensorImage,
 		sensorManager: sensorManager
 	};
-	
-	if($("#sensorImage").val() == ''){
-		alert("图片为空");
-		return;
-	}
 
 	
 	$.ajax({
@@ -61,7 +73,11 @@ function postData(){
 	});
 	
 	var imageData = new FormData();
-	imageData.append("file", $("#sensorImage")[0].files[0])
+	//imageData.append("file", $("#sensorImage")[0].files[0]);
+	var newFile = new File([$("#sensorImage")[0].files[0]], addedSensor.sensorImage, {type:$("#sensorImage")[0].files[0].type});
+	// console.log($("#sensorImage")[0].files[0]);
+	// console.log(newFile);
+	imageData.append("file", newFile);
 	
 	$.ajax({
 		type: "POST",
@@ -75,6 +91,7 @@ function postData(){
 		},
 		error: function(data){
 			alert("添加失败");
+			
 		}
 		
 	});
