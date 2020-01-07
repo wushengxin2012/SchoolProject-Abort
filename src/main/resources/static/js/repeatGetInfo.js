@@ -32,23 +32,51 @@ function postData(){
 		sensorType: sensorType,
 		sensorRange: sensorRange,
 		sensorPosition: sensorPosition,
-		sensorImage: sensorImage,
+		//sensorImage: sensorImage,
 		sensorManager: sensorManager
 	};
+	
+	if($("#sensorImage").val() == ''){
+		alert("图片为空");
+		return;
+	}
+
+	
 	$.ajax({
 		type: "POST",
 		url: window.location.protocol + "/addSensor",
 		data: addedSensor,
+		// contentType: false,
+		// processData: false,
 		success: function(data){
-			alert("添加成功");
-			$("#addedSensorForm")[0].reset();
-			$("#closeButton").click();
-			window.location.reload();
+			// alert("添加成功");
+			// $("#addedSensorForm")[0].reset();
+			// $("#closeButton").click();
+			// window.location.reload();
 		},
 		error: function(e){
 			alert("添加失败：" + e);
 			// console.log(window.location.protocol +  window.location.host + "/addSensor");
 		}
+	});
+	
+	var imageData = new FormData();
+	imageData.append("file", $("#sensorImage")[0].files[0])
+	
+	$.ajax({
+		type: "POST",
+		url: window.location.protocol + "/addImage",
+		data: imageData,
+		contentType: false,
+		processData: false,
+		success: function(data){
+			alert("添加成功");
+			
+		},
+		error: function(data){
+			alert("添加失败");
+		}
+		
 	});
 };
 
