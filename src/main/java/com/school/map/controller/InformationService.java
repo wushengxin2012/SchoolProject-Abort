@@ -77,6 +77,7 @@ public class InformationService{
 			returnModel.setY(Double.parseDouble(position_y));
 			returnModel.setImgPath(model.getSensorImage());
 			returnModel.setPointStatus(model.getSensorStatus());
+			returnModel.setPointType(model.getSensorType());
 			
 			return returnModel;
 		}

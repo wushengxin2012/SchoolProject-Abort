@@ -12,6 +12,9 @@ public class InfoModel{
 		
         private double x;
         private double y;
+		
+		// new added parameter
+		private String pointType;
 
         public InfoModel(){
 
@@ -93,5 +96,14 @@ public class InfoModel{
         public void setY(double value){
                         this.y = value;
         }
+		
+		// new added parameter's getter and setter
+		public String getPointType(){
+			return pointType;
+		}
+
+		public void setPointType(String value){
+			this.pointType = value;
+		}
 
 }
