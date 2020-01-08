@@ -1,25 +1,29 @@
-var dataFormService = new Vue({
-	//el: 'datafromservice1',
-	data: {
-		infoId : '',
-		pointName : '',
-		pointStatus : '',
-		parameter1 : '',
-		parameter2 : '',
-		parameter3 : '',
-		parameter4 : '',
+// var dataFormService = new Vue({
+	// el: 'datafromservice1',
+	// data: {
+		// infoId : '',
+		// pointName : '',
+		// pointStatus : '',
+		// parameter1 : '',
+		// parameter2 : '',
+		// parameter3 : '',
+		// parameter4 : '',
 		// show images
-		title : 'test title',
-		imgName : 'zhulou',
-		imgPath : 'zhulou.jpg',
-		showContent : '<p>This is the content to be show, for more infomation. this to</p>',
-	}
-});
+		// title : 'test title',
+		// imgName : 'zhulou',
+		// imgPath : 'zhulou.jpg',
+		// showContent : '<p>This is the content to be show, for more infomation. this to</p>',
+	// }
+// });
 
 var title = "zhulou";
-// var imgName = 1;
+var infoId = 1;
+var pointStatus = "ok";
+var pointPosition = "123,123";
+var pointType = "jinggaichuanganqi";
 var imgPath = "zhulou.jpg";
-var showContent = "<p>This is the content to be show, for more infomation. this to</p>";
+var pointManager = "None";
+// var showContent = "<p>This is the content to be show, for more infomation. this to</p>";
 
 var showWindow = function (e){
 	//<!-- 显示窗口基本信息 -->
@@ -36,28 +40,28 @@ var showWindow = function (e){
 									'<li class="list-group-item" style="padding:0; border:0px">' +
 										'<div class="input-group input-group-sm input-group-md">'+
 											'<span class="input-group-addon">传感器ID</span>'+
-											'<input type="text" class="form-control" value="21" >'+
+											'<input type="text" class="form-control" value="' + infoId + '" >'+
 											'<!-- <span class="input-group-addon">cm</span> -->'+
 										'</div>'+
 									'</li>'+
 									'<li class="list-group-item" style="padding:0; border:0px">' +
 										'<div class="input-group input-group-sm input-group-md">'+
 											'<span class="input-group-addon">传感器状态</span>'+
-											'<input type="button" class="form-control btn btn-primary" value="正常" >'+
+											'<input type="button" class="form-control btn btn-primary" value="' + pointStatus + '" >'+
 											'<!-- <span class="input-group-addon">cm</span> -->'+
 										'</div>'+
 									'</li>'+
 									'<li class="list-group-item" style="padding:0; border:0px">' +
 										'<div class="input-group input-group-sm input-group-md">'+
 											'<span class="input-group-addon">传感器类型</span>'+
-											'<input type="text" class="form-control" value="井盖传感器" >'+
+											'<input type="text" class="form-control" value="' + pointType + '" >'+
 											'<!-- <span class="input-group-addon">cm</span> -->'+
 										'</div>'+
 									'</li>'+
 									'<li class="list-group-item" style="padding:0; border:0px">' +
 										'<div class="input-group input-group-sm input-group-md">'+
 											'<span class="input-group-addon">传感器位置</span>'+
-											'<input type="text" class="form-control" value="124,256" >'+
+											'<input type="text" class="form-control" value="' + pointPosition + '" >'+
 											'<!-- <span class="input-group-addon">cm</span> -->'+
 										'</div>'+
 									'</li>'+
@@ -66,14 +70,14 @@ var showWindow = function (e){
 							"</div>" +
 						"</div>" +
 						"<div class='panel-footer' style='padding:0'>" +
-							"<small class='text-muted'>Manager: Someone</small>" +
+							"<small class='text-muted'>Manager: " + pointManager + "</small>" +
 						"</div>" +
 					"</div>";
 					
 					
 	var opts = {
 		title : title,
-		width : 300,
+		width : 380,
 		height: 180,
 		enableAutoPan : true,
 	}
@@ -98,9 +102,14 @@ var doAjax = function (e){
 	$.get("http://localhost:8000/informationservice/" + point.infoId, function(data, status){
 		
 		title = data.pointName;
-		// imgName = data.infoId;
 		imgPath = "../" + "imgs/" + point.imgPath;
-
+		
+		infoId = data.infoId;
+		pointStatus = data.pointStatus;
+		pointPosition = data.x + ' , ' + data.y;
+		pointType = data.pointType;
+		pointManager = data.pointManager;
+		
 		showWindow(e);
 	
 	});
