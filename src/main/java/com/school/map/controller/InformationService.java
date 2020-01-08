@@ -78,6 +78,7 @@ public class InformationService{
 			returnModel.setImgPath(model.getSensorImage());
 			returnModel.setPointStatus(model.getSensorStatus());
 			returnModel.setPointType(model.getSensorType());
+			returnModel.setPointManager(model.getSensorManager());
 			
 			return returnModel;
 		}

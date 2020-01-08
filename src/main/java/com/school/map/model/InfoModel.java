@@ -15,6 +15,7 @@ public class InfoModel{
 		
 		// new added parameter
 		private String pointType;
+		private String pointManager;
 
         public InfoModel(){
 
@@ -104,6 +105,14 @@ public class InfoModel{
 
 		public void setPointType(String value){
 			this.pointType = value;
+		}
+		
+		public String getPointManager(){
+			return pointManager;
+		}
+
+		public void setPointManager(String value){
+			this.pointManager = value;
 		}
 
 }
