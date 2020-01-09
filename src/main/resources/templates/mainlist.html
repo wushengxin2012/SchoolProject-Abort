@@ -43,6 +43,9 @@
 	<style>
 		#mapForSearch{width:100%;height:200px;}
 		.anchorBL{display:none}
+		#tableError {border-left: 0px; border-right:0px}
+		#tableError th{border-left: 0px; border-right: 0px}
+		#tableError td{border-left: 0px; border-right: 0px}
 	</style>
   </head>
   
@@ -95,8 +98,14 @@
 			<!-- 右边下部分 -->
 			<h2 class="sub-header">实时状态</h2>
 			
-			<div>
-				<table id="table"></table>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
+					<table id="tableError"></table>
+				</div>
+				<div class="col-sm-8 col-sm-offset-0 col-md-8 col-md-offset-0">
+					<table id="tableStatus" ></table>
+				</div>
+				
 			</div>
 		</div>
 		

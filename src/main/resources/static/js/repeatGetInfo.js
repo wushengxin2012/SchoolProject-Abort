@@ -110,9 +110,9 @@ function postData(){
 };
 
 
-// 创建Table
-$("#table").bootstrapTable('destroy');
-$("#table").bootstrapTable({
+// 创建TableStatus
+$("#tableStatus").bootstrapTable('destroy');
+$("#tableStatus").bootstrapTable({
 	//url: '/data/data.json',
     pageNumber: 1,
 	pagination: true,
@@ -173,5 +173,22 @@ function editById(id){
 function deleteById(id){
 	alert("this is deleteById, parameter is :" + id);
 };
+
+// 创建tableError
+$("#tableError").bootstrapTable("destroy");
+$("#tableError").bootstrapTable({
+	pageNumber: 1,
+	pagination: true,
+	sidePagination: 'client',
+	pageSize: 5,
+	columns:[
+		{field: "id", title: "故障点ID"},
+		{field: "data", title: "当前数据"},
+	],
+	data:[
+		{"id":1, "name":"N1", "type":"T1", "status":"S1", "position":"P1", "manager":"M1", "data":1},
+		{"id":5, "name":"N2", "type":"T2", "status":"S2", "position":"P2", "manager":"M2", "data":12},
+		{"id":13, "name":"N3", "type":"T3", "status":"S3", "position":"P3", "manager":"M3", "data":0},]
+});
 
 
