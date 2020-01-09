@@ -20,15 +20,15 @@ public class InformationService{
 		
 		public InformationService(){
 			
-			InfoModel point1 = new InfoModel(1, "qingzhen", "status-ok", 103.935977,30.760807);
+			InfoModel point1 = new InfoModel(1, "清真餐厅监测点", "正常", 103.935977,30.760807);
             point1.setImgPath("qingzhen.png");
-            InfoModel point2 = new InfoModel(2, "tushuguan", "status-ok", 103.935258,30.756513);
+            InfoModel point2 = new InfoModel(2, "图书馆监测点", "正常", 103.935258,30.756513);
             point2.setImgPath("tushuguan.jpg");
-            InfoModel point3 = new InfoModel(3, "jiayuan", "status-ok", 103.940361,30.759085);
+            InfoModel point3 = new InfoModel(3, "家园餐厅监测点", "正常", 103.940361,30.759085);
             point3.setImgPath("jiayuan.jpg");
-            InfoModel point4 = new InfoModel(4, "kafei", "status-ok", 103.931324,30.756509);
+            InfoModel point4 = new InfoModel(4, "咖啡厅监测点", "正常", 103.931324,30.756509);
             point4.setImgPath("kafei.jpg");
-            InfoModel point5 = new InfoModel(5, "huodong", "status-error", 103.935456,30.761459);
+            InfoModel point5 = new InfoModel(5, "活动中心监测点", "正常", 103.935456,30.761459);
             point5.setImgPath("huodong.jpg");
 			
             list = new ArrayList<InfoModel>();
