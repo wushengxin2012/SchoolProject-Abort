@@ -15,7 +15,7 @@ map.addEventListener("click", function(e){
 });
 
 var local = new BMap.LocalSearch(map, {renderOptions: {map: map}});
-//local.search("电子科技大学");
+// local.search("电子科技大学");
 function searchPosition(position){
 	local.search(position);
 };
@@ -29,7 +29,7 @@ function postData(){
 	}
 	
 	if($("#finallyPosition").val() == '' ){
-		//alert("位置不能为空");
+		// alert("位置不能为空");
 		toastr.warning('位置不能为空');
 		return;
 	}
@@ -72,14 +72,14 @@ function postData(){
 			// window.location.reload();
 		},
 		error: function(e){
-			//alert("添加失败：" + e);
+			// alert("添加失败：" + e);
 			toastr.error("添加失败：" + e);
 			// console.log(window.location.protocol +  window.location.host + "/addSensor");
 		}
 	});
 	
 	var imageData = new FormData();
-	//imageData.append("file", $("#sensorImage")[0].files[0]);
+	// imageData.append("file", $("#sensorImage")[0].files[0]);
 	var newFile = new File([$("#sensorImage")[0].files[0]], addedSensor.sensorImage, {type:$("#sensorImage")[0].files[0].type});
 	// console.log($("#sensorImage")[0].files[0]);
 	// console.log(newFile);
@@ -142,13 +142,13 @@ function getDataFromServerAndDrawTheTable(){
 			sidePagination: 'client',
 			pageSize: 5,
 			pageList: [5, 10, 20],
-			//buttonsAlign: "left",
+			// buttonsAlign: "left",
 			// 搜索设置
 			search: true,
-			//searchOnEnterKey: true,
+			// searchOnEnterKey: true,
 			showSearchButton: true,
 			showSearchClearButton: true,
-			//searchAlign: "left",
+			// searchAlign: "left",
 			// 搜索设置 - end
 			// showRefresh: true,
 			// 导出设置
@@ -156,7 +156,7 @@ function getDataFromServerAndDrawTheTable(){
 			exportDataType: "all",
 			exportType: ["excel", "csv", "xml", "txt", "sql"],
 			exportOptions: {},
-			//Icons: 'glyphicon-export',
+			// Icons: 'glyphicon-export',
 			// 导出设置 - end
 			
 			columns:[
@@ -171,7 +171,7 @@ function getDataFromServerAndDrawTheTable(){
 			data: dataFromServer,
 			
 		});
-		//console.log(dataFromServer);
+		// console.log(dataFromServer);
 	});
 }
 
