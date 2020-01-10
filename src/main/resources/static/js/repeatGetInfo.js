@@ -135,7 +135,23 @@ function getDataFromServerAndDrawTheTable(){
 			sidePagination: 'client',
 			pageSize: 5,
 			pageList: [5, 10, 20],
+			//buttonsAlign: "left",
+			// 搜索设置
+			search: true,
+			//searchOnEnterKey: true,
+			showSearchButton: true,
+			showSearchClearButton: true,
+			//searchAlign: "left",
+			// 搜索设置 - end
 			// showRefresh: true,
+			// 导出设置
+			showExport: true,
+			exportDataType: "all",
+			exportType: ["excel", "csv", "xml", "txt", "sql"],
+			exportOptions: {},
+			//Icons: 'glyphicon-export',
+			// 导出设置 - end
+			
 			columns:[
 				{field: 'id', title: '监测点ID'},
 				{field: 'name', title: '监测点名称'},
@@ -170,7 +186,7 @@ function actionFormatter(value, row, index){
 	var result = "";
 	result += "<a href='javascript:;' class='btn btn-xs btn-primary' style='margin:1px' onclick='getInfoById("+id+")' title='查看数据'><span class='glyphicon glyphicon-stats'></span></a>";
 	result += "<a href='javascript:;' class='btn btn-xs btn-info' style='margin:1px' onclick='editById("+id+")' title='编辑数据'><span class='glyphicon glyphicon-pencil'></span></a>";
-	result += "<a href='javascript:;' class='btn btn-xs btn-danger' style='margin:1px' onclick='deleteById("+id+")' title='删除节点'><span class='glyphicon glyphicon-remove'></span></a>";
+	result += "<a href='javascript:;' class='btn btn-xs btn-danger' style='margin:1px' onclick='deleteById("+id+")' title='删除节点'><span class='glyphicon glyphicon-trash'></span></a>";
 	
 	return result;
 };
@@ -190,20 +206,34 @@ function deleteById(id){
 
 
 // 创建tableError
+var dataOfError = [
+		{"id":1, "name":"N1", "type":"T1", "status":"S1", "position":"P1", "manager":"M1", "data":1},
+		{"id":5, "name":"N2", "type":"T2", "status":"S2", "position":"P2", "manager":"M2", "data":12},
+		{"id":13, "name":"N3", "type":"T3", "status":"S3", "position":"P3", "manager":"M3", "data":0},];
+
 $("#tableError").bootstrapTable("destroy");
 $("#tableError").bootstrapTable({
 	pageNumber: 1,
 	pagination: true,
 	sidePagination: 'client',
 	pageSize: 5,
+	//showRefresh: true,
+	buttonsAlign: "left",
+	paginationDetailHAlign: ' hiddenPagination', // 隐藏分页详细信息
+	showToggle: true,
+	// 导出设置
+	showExport: true,
+	exportDataType: "all",
+	exportType: ["excel", "csv", "xml", "txt", "sql"],
+	exportOptions: {},
+	//Icons: 'glyphicon-export',
+	// 导出设置 - end
+			
 	columns:[
 		{field: "id", title: "故障点ID"},
 		{field: "data", title: "当前数据"},
 	],
-	data:[
-		{"id":1, "name":"N1", "type":"T1", "status":"S1", "position":"P1", "manager":"M1", "data":1},
-		{"id":5, "name":"N2", "type":"T2", "status":"S2", "position":"P2", "manager":"M2", "data":12},
-		{"id":13, "name":"N3", "type":"T3", "status":"S3", "position":"P3", "manager":"M3", "data":0},]
+	data:dataOfError,
 });
 
 
