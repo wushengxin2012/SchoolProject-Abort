@@ -22,18 +22,22 @@ function searchPosition(position){
 
 function postData(){
 	
-	if($("#finallyPosition").val() == '' ){
-		alert("位置不能为空");
+	if($("#sensorName").val() == '' ){
+		// alert("名字不能为空");
+		toastr.warning("名字不能为空");
 		return;
 	}
 	
-	if($("#sensorName").val() == '' ){
-		alert("名字不能为空");
+	if($("#finallyPosition").val() == '' ){
+		//alert("位置不能为空");
+		toastr.warning('位置不能为空');
 		return;
 	}
+	
 		
 	if($("#sensorImage").val() == ''){
-		alert("图片不能为空");
+		// alert("图片不能为空");
+		toastr.warning("图片不能为空");
 		return;
 	}
 	
@@ -68,7 +72,8 @@ function postData(){
 			// window.location.reload();
 		},
 		error: function(e){
-			alert("添加失败：" + e);
+			//alert("添加失败：" + e);
+			toastr.error("添加失败：" + e);
 			// console.log(window.location.protocol +  window.location.host + "/addSensor");
 		}
 	});
@@ -90,6 +95,7 @@ function postData(){
 			
 			if(firstPostStatus == true){
 				alert("添加成功");
+				// toastr.info("添加成功");
 				$("#addedSensorForm")[0].reset();
 				$("#closeButton").click();
 				window.location.reload();
@@ -97,13 +103,14 @@ function postData(){
 				
 			}else{
 				alert("数据上传失败");
+				// toastr.error("数据上传失败");
 				
 			}
 			
 		},
 		error: function(data){
 			alert("图片上传失败");
-			
+			// toastr.error("图片上传失败");
 		}
 		
 	});
@@ -153,7 +160,7 @@ function getDataFromServerAndDrawTheTable(){
 			// 导出设置 - end
 			
 			columns:[
-				{field: 'id', title: '监测点ID'},
+				{field: 'id', title: '传感器ID'},
 				{field: 'name', title: '监测点名称'},
 				{field: 'type', title: '传感器类型'},
 				{field: 'status', title: '传感器状态'},
