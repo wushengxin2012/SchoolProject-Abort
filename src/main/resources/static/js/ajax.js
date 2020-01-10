@@ -102,30 +102,30 @@ var doAjax = function (e){
 		return;
 	}
 	
-	// $.get("http://localhost:8000/informationservice/" + point.infoId, function(data, status){
+	$.get("http://localhost:8000/informationservice/" + point.infoId, function(data, status){
 		
-		// title = data.pointName;
-		// imgPath = "../" + "imgs/" + point.imgPath;
+		title = data.pointName;
+		imgPath = "../" + "imgs/" + data.imgPath;
 		
-		// infoId = data.infoId;
-		// pointStatus = data.pointStatus;
-		// pointPosition = data.x + ' , ' + data.y;
-		// pointType = data.pointType;
-		// pointManager = data.pointManager;
+		infoId = data.infoId;
+		pointStatus = data.pointStatus;
+		pointPosition = data.x + ' , ' + data.y;
+		pointType = data.pointType;
+		pointManager = data.pointManager;
 		
-		// showWindow(e);
+		showWindow(e);
 	
-	// });
+	});
 	
 	// test of using local data
-	title = point.pointName;
-	imgPath = "../" + "imgs/" + point.imgPath;
-	infoId = point.infoId;
-	pointStatus = point.pointStatus;
-	pointPosition = point.x + " , " + point.y;
-	pointType = point.pointType;
-	pointManager = point.pointManager;
-	showWindow(e);
+	// title = point.pointName;
+	// imgPath = "../" + "imgs/" + point.imgPath;
+	// infoId = point.infoId;
+	// pointStatus = point.pointStatus;
+	// pointPosition = point.x + " , " + point.y;
+	// pointType = point.pointType;
+	// pointManager = point.pointManager;
+	// showWindow(e);
 	// test of using local data -- end
 	
 }

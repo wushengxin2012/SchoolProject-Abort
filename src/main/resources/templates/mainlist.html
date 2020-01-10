@@ -71,7 +71,7 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#">Dashboard</a></li> -->
             <!-- <li><a href="#">Settings</a></li> -->
-            <li><a href="#" data-toggle="modal" data-target=".addSensor">施工</a></li>
+            <li><a href="#" data-toggle="modal" data-target=".addSensor" id="shigong">施工</a></li>
             <li><a href="#">帮助</a></li>
           </ul>
           <!-- <form class="navbar-form navbar-right"> -->
@@ -135,6 +135,7 @@
 								<div class="input-group input-group-sm input-group-md">
 									<span class="input-group-addon">名字</span>
 									<input type="text" class="form-control" id="sensorName"/>
+									<input type="text" class="form-control hidden" id="sensorId" />
 									<!-- <span class="input-group-addon">cm</span> -->
 								</div>
 							</li>
@@ -147,15 +148,7 @@
 										<option>温湿度传感器</option>
 										<option>液位传感器</option>
 									</select>
-									<!-- <script> -->
-										<!-- $("#sensorType").change( -->
-											<!-- function(){ -->
-												<!-- console.log($("#sensorType").val()); -->
-											<!-- } -->
-										<!-- ); -->
-									<!-- </script> -->
-									<!-- <input type="text" class="form-control" id="sensorType"/> -->
-									<!-- <span class="input-group-addon" data-toggle="modal" data-target=".typeTip">提示</span> -->
+									
 								</div>
 							</li>
 							<li class="list-group-item">
@@ -197,7 +190,7 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-default btn-md" type="button" data-dismiss="modal" id="closeButton">关闭</button>
-					<button class="btn btn-primary btn-md" type="button" onclick="postData()">确定</button>
+					<button class="btn btn-primary btn-md" type="button" onclick="postData()" id="shigongfinish">确定</button>
 				</div>
 			</div>
 		</div>

@@ -35,8 +35,8 @@ function postData(){
 	}
 	
 		
-	if($("#sensorImage").val() == ''){
-		// alert("图片不能为空");
+	if($("#sensorImage").val() == '' && $("#sensorId").val() == ''){
+		//alert("图片不能为空");
 		toastr.warning("图片不能为空");
 		return;
 	}
@@ -46,7 +46,10 @@ function postData(){
 	var sensorRange = $("#sensorRange").val();
 	var sensorPosition = $("#finallyPosition").val();
 	// var sensorImage = $("#sensorImage").val();
-	var sensorImage = new Date().getTime() + "." + ($("#sensorImage")[0].files[0].type).split('/')[1];
+	var sensorImage;
+	if($("#sensorImage").val() != ''){
+		sensorImage = new Date().getTime() + "." + ($("#sensorImage")[0].files[0].type).split('/')[1];		
+	}
 	var sensorManager = $("#sensorManager").val();
 	var addedSensor = {
 		sensorName: sensorName,
@@ -62,58 +65,62 @@ function postData(){
 		type: "POST",
 		url: window.location.protocol + "/addSensor",
 		data: addedSensor,
-		// contentType: false,
-		// processData: false,
+		
 		success: function(data){
 			firstPostStatus = true;
-			// alert("添加成功");
-			// $("#addedSensorForm")[0].reset();
-			// $("#closeButton").click();
-			// window.location.reload();
-		},
-		error: function(e){
-			// alert("添加失败：" + e);
-			toastr.error("添加失败：" + e);
-			// console.log(window.location.protocol +  window.location.host + "/addSensor");
-		}
-	});
-	
-	var imageData = new FormData();
-	// imageData.append("file", $("#sensorImage")[0].files[0]);
-	var newFile = new File([$("#sensorImage")[0].files[0]], addedSensor.sensorImage, {type:$("#sensorImage")[0].files[0].type});
-	// console.log($("#sensorImage")[0].files[0]);
-	// console.log(newFile);
-	imageData.append("file", newFile);
-	
-	$.ajax({
-		type: "POST",
-		url: window.location.protocol + "/addImage",
-		data: imageData,
-		contentType: false,
-		processData: false,
-		success: function(data){
-			
-			if(firstPostStatus == true){
-				alert("添加成功");
-				// toastr.info("添加成功");
+			if($("#sensorId").val() != ''){
+				toastr.info("修改成功");
 				$("#addedSensorForm")[0].reset();
 				$("#closeButton").click();
-				window.location.reload();
-				firstPostStatus = false;
+			}
+		},
+		error: function(e){
+			toastr.error("添加失败：" + e);
+			if($("#sensorId").val() != ''){
+				toastr.error("修改失败");
+				$("#addedSensorForm")[0].reset();
+				$("#closeButton").click();
+			}
+		}
+	});
+	
+	// 上传图片
+	var imageData = new FormData();
+	if($("#sensorImage").val() != ''){
+		var newFile = new File([$("#sensorImage")[0].files[0]], addedSensor.sensorImage, {type:$("#sensorImage")[0].files[0].type});
+		imageData.append("file", newFile);
+		
+		$.ajax({
+			type: "POST",
+			url: window.location.protocol + "/addImage",
+			data: imageData,
+			contentType: false,
+			processData: false,
+			success: function(data){
 				
-			}else{
-				alert("数据上传失败");
-				// toastr.error("数据上传失败");
+				if(firstPostStatus == true){
+					alert("添加成功");
+					// toastr.info("添加成功");
+					$("#addedSensorForm")[0].reset();
+					$("#closeButton").click();
+					window.location.reload();
+					firstPostStatus = false;
+					
+				}else{
+					alert("数据上传失败");
+					// toastr.error("数据上传失败");
+					
+				}
 				
+			},
+			error: function(data){
+				alert("图片上传失败");
+				// toastr.error("图片上传失败");
 			}
 			
-		},
-		error: function(data){
-			alert("图片上传失败");
-			// toastr.error("图片上传失败");
-		}
-		
-	});
+		});	
+	}
+	
 };
 
 
@@ -199,7 +206,22 @@ function actionFormatter(value, row, index){
 };
 
 function getInfoById(id){
-	alert("this is getInfoById, paramater is : " + id);
+	// alert("this is getInfoById, paramater is : " + id);
+	$("#shigong").click();
+	$("#sensorId").val(id);
+	var tempPoint;
+	for(var i=0; i < dataFromServer.length; i++){
+		if(dataFromServer[i].id == id){
+			tempPoint = dataFromServer[i];
+			break;
+		}
+	}
+	
+	$("#sensorName").val(tempPoint.name);
+	$("#sensorType").val(tempPoint.type);
+	$("#finallyPosition").val(tempPoint.position);
+	$("#sensorManager").val(tempPoint.manager);
+	
 };
 
 function editById(id){

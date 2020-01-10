@@ -17,6 +17,7 @@ public class InformationService{
 		
 		// test data
 		private List<InfoModel> list;
+		private int countId = 6;
 		
 		public InformationService(){
 			
@@ -63,13 +64,28 @@ public class InformationService{
             return list;
         }
 		
+		@RequestMapping(value="/informationservice/setmodel/{infoId}")
+		public String setInfoModel(InfoModel model, @PathVariable("infoId") int infoId){
+			// remove the old InfoModel
+			for(InfoModel temp : list){
+				if(temp.getInfoId() == infoId){
+					list.remove(temp);
+					break;
+				}
+			}
+			model.setInfoId(infoId);
+			list.add(model);
+			return "success";
+			
+		}
+		
 		// other tools
 		// other tools
 		// other tools
 		// other tools
 		private InfoModel transferModel(SensorModel model){
 			InfoModel returnModel = new InfoModel();
-			returnModel.setInfoId(6);
+			returnModel.setInfoId(countId++);
 			returnModel.setPointName(model.getSensorName());
 			String position_x = model.getSensorPosition().split(",")[0];
 			String position_y = model.getSensorPosition().split(",")[1];
