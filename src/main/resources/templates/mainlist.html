@@ -162,6 +162,22 @@
 								<div class="input-group input-group-sm input-group-md">
 									<span class="input-group-addon">位置</span>
 									<input type="text" class="form-control" id="finallyPosition">
+									<script>
+										var scrollPosition;
+										$(function(){
+											$("#positionModal").on('show.bs.modal', function(e){
+												scrollPosition = $(window).scrollTop();
+												$(window).scrollTop(0);
+												<!-- console.log("shown.bs.modal"); -->
+											})
+										});
+										$(function(){
+											$("#positionModal").on('hidden.bs.modal', function(e){
+												$(window).scrollTop(scrollPosition);
+												<!-- console.log("hidden.bs.modal"); -->
+											});
+										});
+									</script>
 									<span class="input-group-addon" data-toggle="modal" data-target=".addPosition">点击添加</span>
 								</div>
 							</li>
@@ -197,7 +213,7 @@
 	</div>
 	
 	<!-- pop windows for position -->
-	<div class="modal fade addPosition" role="dialog" aria-hidden="true">
+	<div class="modal fade addPosition" role="dialog" aria-hidden="true" id="positionModal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
