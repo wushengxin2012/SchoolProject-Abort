@@ -29,7 +29,12 @@ public class SensorController{
 	
 	@RequestMapping(value="/addSensor" , method=RequestMethod.POST)
 	public String addSensor(SensorModel addedSensor){
-		infoService.saveSensor(addedSensor);
+		if(addedSensor.getSensorId() == -1){
+			infoService.saveSensor(addedSensor);
+		}else{
+			infoService.amendSensor(addedSensor);
+			System.out.println("server accept the id");
+		}
 		System.out.println(addedSensor.getSensorName());
 		// System.out.println(addedSensor.get("sensorName"));
 		return "success";

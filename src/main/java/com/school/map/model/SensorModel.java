@@ -8,6 +8,7 @@ public class SensorModel{
 	private	String sensorImage;
 	private	String sensorManager;
 	private String sensorStatus;
+	private int sensorId;
 	
 	public String getSensorName(){
 		return sensorName;
@@ -58,5 +59,13 @@ public class SensorModel{
 
 	public void setSensorStatus(String value){
 		this.sensorStatus = value;
+	}
+	
+	public int getSensorId(){
+        return sensorId;
+	}
+
+	public void setSensorId(int value){
+		this.sensorId = value;
 	}
 }

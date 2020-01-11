@@ -51,13 +51,19 @@ function postData(){
 		sensorImage = new Date().getTime() + "." + ($("#sensorImage")[0].files[0].type).split('/')[1];		
 	}
 	var sensorManager = $("#sensorManager").val();
+	var sensorId = $("#sensorId").val();
+	if(sensorId == ''){
+		sensorId = -1;
+	}
+	
 	var addedSensor = {
 		sensorName: sensorName,
 		sensorType: sensorType,
 		sensorRange: sensorRange,
 		sensorPosition: sensorPosition,
 		sensorImage: sensorImage,
-		sensorManager: sensorManager
+		sensorManager: sensorManager,
+		sensorId: sensorId
 	};
 
 	var firstPostStatus = false;
@@ -69,9 +75,10 @@ function postData(){
 		success: function(data){
 			firstPostStatus = true;
 			if($("#sensorId").val() != ''){
-				toastr.info("修改成功");
+				alert("修改成功");
 				$("#addedSensorForm")[0].reset();
 				$("#closeButton").click();
+				window.location.reload();
 			}
 		},
 		error: function(e){

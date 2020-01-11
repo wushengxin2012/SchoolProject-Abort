@@ -103,5 +103,48 @@ public class InformationService{
 			InfoModel newInfoModel = transferModel(sensorModel);
 			list.add(newInfoModel);
 		}
-
+		
+		// amend sensor 
+		// amend sensor 
+		// amend sensor 
+		public void amendSensor(SensorModel sensorModel){
+			InfoModel newInfoModel = transferModel(sensorModel);
+			newInfoModel.setInfoId(sensorModel.getSensorId());
+			InfoModel oldInfoModel = null;
+			for(InfoModel temp : list){
+				if(temp.getInfoId() == newInfoModel.getInfoId()){
+					oldInfoModel = temp;
+					//list.remove(temp);
+					break;
+				}
+			}
+			if(oldInfoModel == null){
+				list.add(newInfoModel);
+				return;
+			}
+			
+			// making some amend
+			if(newInfoModel.getPointName() != null){
+				oldInfoModel.setPointName(newInfoModel.getPointName());
+			}
+			if(newInfoModel.getPointStatus() != null){
+				oldInfoModel.setPointStatus(newInfoModel.getPointStatus());
+			}
+			if(newInfoModel.getImgPath() != null){
+				oldInfoModel.setImgPath(newInfoModel.getImgPath());
+			}
+			if(newInfoModel.getX() != 0.0d){
+				oldInfoModel.setX(newInfoModel.getX());
+			}
+			if(newInfoModel.getY() != 0.0d){
+				oldInfoModel.setY(newInfoModel.getY());
+			} 
+			if(newInfoModel.getPointType() != null){
+				oldInfoModel.setPointType(newInfoModel.getPointType());
+			}
+			if(newInfoModel.getPointManager() != null){
+				oldInfoModel.setPointManager(newInfoModel.getPointManager());
+			}
+			//list.add(oldInfoModel);
+		}
 }
