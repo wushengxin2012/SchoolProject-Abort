@@ -150,7 +150,7 @@ function getDataFromServerAndDrawTheTable(){
 			});
 		}
 		$("#tableStatus").bootstrapTable({
-			//url: '/data/data.json',
+			// url: '/data/data.json',
 			pageNumber: 1,
 			pagination: true,
 			sidePagination: 'client',
@@ -213,7 +213,11 @@ function actionFormatter(value, row, index){
 };
 
 function getInfoById(id){
-	// alert("this is getInfoById, paramater is : " + id);
+	alert("this is getInfoById, paramater is : " + id);
+};
+
+function editById(id){
+	// alert("this is editById, paramater is :" + id);
 	$("#shigong").click();
 	$("#sensorId").val(id);
 	var tempPoint;
@@ -228,11 +232,6 @@ function getInfoById(id){
 	$("#sensorType").val(tempPoint.type);
 	$("#finallyPosition").val(tempPoint.position);
 	$("#sensorManager").val(tempPoint.manager);
-	
-};
-
-function editById(id){
-	alert("this is editById, paramater is :" + id);
 };
 
 function deleteById(id){
