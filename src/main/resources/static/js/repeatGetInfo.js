@@ -213,7 +213,82 @@ function actionFormatter(value, row, index){
 };
 
 function getInfoById(id){
-	alert("this is getInfoById, paramater is : " + id);
+	var clickedPoint;
+	for(var i = 0; i < dataFromServer.length; i++){
+		if(dataFromServer[i].id == id){
+			clickedPoint = dataFromServer[i];
+			break;
+		}
+	}
+	
+	// set chart legend
+	$("#chartTitle").html(clickedPoint.id + " " + clickedPoint.name);
+	
+	var totalLabels = ['2019/10/1','2019/10/2','2019/10/3','2019/10/4','2019/10/5','2019/10/6','2019/10/7','2019/10/8','2019/10/9','2019/10/10','2019/10/11','2019/10/12','2019/10/13','2019/10/14','2019/10/15','2019/10/16','2019/10/17','2019/10/18','2019/10/19','2019/10/20','2019/10/21','2019/10/22','2019/10/23','2019/10/24','2019/10/25','2019/10/26','2019/10/27','2019/10/28','2019/10/29','2019/10/30','2019/10/31'];
+	var totalData = [27,49,43,36,30,25,3,7,43,3,3,25,24,22,14,33,19,49,18,46,39,32,32,10,32,3,23,18,3,30,44];
+	var displayPos = totalData.length;
+	var lineChart;
+	var lineData;
+	var options;
+	var displayLength = 20;
+	
+	// get data and draw the picture;
+	$.get("http://localhost:8000/informationservice/"+id, function(data, status){
+		
+		lineData = {
+			labels:totalLabels.slice(displayPos - displayLength, displayPos),
+			datasets: [
+				{
+					label:clickedPoint.name,
+					//backgroundColor: "rgb(54, 162, 235)",
+					fill: "rgb(54, 162, 235)",
+					borderColor: "rgb(54, 162, 235)",
+					pointBackgroundColor: "rgb(54, 162, 235)",
+					data: totalData.slice(displayPos - displayLength, displayPos),
+				},
+			],
+		};
+		options = {
+				responsive: true,
+				legend: {
+					display: false,
+				},
+			};
+		var lineCtx = document.getElementById("lineChart").getContext('2d');
+		lineChart = new Chart(lineCtx, {
+			type: "line",
+			data: lineData,
+			options: options,
+		});
+		$("#checkData").click();
+		
+		$("#buttonAdd").click(function(){
+			displayLength += 5;
+			var startPos;
+			if(displayPos - displayLength <= 0){
+				startPos = 0;
+				displayLength -= 5;
+			}else{
+				startPos = displayPos - displayLength;
+			}
+			lineData.datasets[0].data = totalData.slice(startPos, displayPos);
+			lineData.labels = totalLabels.slice(startPos, displayPos);
+			lineChart.update();
+		});
+		$("#buttonReduce").click(function(){
+			displayLength -= 5;
+			var startPos = displayPos - displayLength;
+			if(startPos >= totalData.length){
+				startPos = totalData.length - 5;
+				displayLength += 5;
+			}else{
+				startPos = displayPos - displayLength;
+			}
+			lineData.datasets[0].data = totalData.slice(startPos, displayPos);
+			lineData.labels = totalLabels.slice(startPos, displayPos);
+			lineChart.update();
+		});
+	})
 };
 
 function editById(id){
@@ -261,7 +336,7 @@ $("#tableError").bootstrapTable({
 	exportDataType: "all",
 	exportType: ["excel", "csv", "xml", "txt", "sql"],
 	exportOptions: {},
-	//Icons: 'glyphicon-export',
+	// Icons: 'glyphicon-export',
 	// 导出设置 - end
 			
 	columns:[
