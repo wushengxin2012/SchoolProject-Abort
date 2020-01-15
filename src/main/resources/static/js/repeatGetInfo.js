@@ -190,7 +190,7 @@ function getDataFromServerAndDrawTheTable(){
 }
 
 function testFunc(){
-	//插入数据刷新表格
+	// 插入数据刷新表格
 	//dataFromServer.push({"id":19, "name":"N19", "type":"T19", "status":"S19", "position":"P19", "manager":"M19"});
 	//$("#tableStatus").bootstrapTable("refreshOptions", dataFromServer);
 	
