@@ -228,8 +228,9 @@ function getInfoById(id){
 	// var totalData = [29,40,29,33,27,28,17,25,3,3,19,11,19,21,13,36,24,17,41,45,32,25,47,41,31,2,10,18,2,2,13,34];
 	var totalLabels;
 	var totalData;
+	var displayPos;
+
 	// var displayPos = totalData.length;
-	displayPos = 32;
 	var lineChart;
 	var lineData;
 	var options;
@@ -238,9 +239,10 @@ function getInfoById(id){
 	// get data and draw the picture;
 	$.get("http://localhost:8000/informationservice/getSensorInfo/"+id, function(data, status){
 		
-		console.log(data);
+		//console.log(data);
 		totalLabels = data.labels;
 		totalData = data.data;
+		displayPos = totalData.length
 		
 		lineData = {
 			labels:totalLabels.slice(displayPos - displayLength, displayPos),
